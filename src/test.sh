@@ -1,6 +1,20 @@
 # gree user
 echo "hello welcome to curlDel"
 
+#!/bin/bash
+
+cat <<'EOF'
+            +--------------------+
+            |  CurlDel Request   |
+            +--------------------+
+                   |
+                   v
+          +-------------------------+
+          |    CurlDel response     |
+          +-------------------------+
+EOF
+
+
 # functions for get request
 getRequest(){
 	echo "You choose get request:"
@@ -15,15 +29,15 @@ postRequest(){
 	echo "You chose post request"
 	echo "Enter endpoint for request: "
 	read endpoint
-	each "Enter json data for request"
+	echo "Enter json data for request"
 	read jsonData
-	curl -X POST $endpoint -d $jsonData
+	curl -X POST $endpoint -d "$jsonData" -H "Content-Type: application/json"
 }
 
 
 
 # allow user to enter operation number
-echo "1.GET 2. POST 3. DELETE 4. UPDATE(PATCH)"
+echo "1.GET 2. POST 3. DELETE 4. UPDATE(PATCH) 5. EXIT"
 echo "choose operation number from 1-4: "
 read operation
 
@@ -41,6 +55,10 @@ case $operation in
 	;;
 	4)
 	echo "You choose: $operation UPDATE REQUEST"
+	;;
+	5)
+	echo "exiting...."
+	exit
 	;;
 	*)
 	echo "Invalid option."
