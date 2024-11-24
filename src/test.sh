@@ -34,6 +34,23 @@ postRequest(){
 	curl -X POST $endpoint -d "$jsonData" -H "Content-Type: application/json"
 }
 
+updateRequest(){
+	echo "You chose update request"
+	echo "Enter endpoint for request: "
+	read endpoint
+	echo "Enter json data for request"
+	read jsonData
+	curl -X PUT $endpoint -d $jsonData -H "Content-Type: application/json"
+}
+
+deleteRequest(){
+	echo "You chose delete request"
+	echo "Enter endpoint for request: "
+	read endpoint
+	echo "Enter json data for request"
+	read jsonData
+	curl -X DELETE $endpoint -H "Content-Type: application/json"
+}
 
 
 # allow user to enter operation number
