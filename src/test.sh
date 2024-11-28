@@ -47,8 +47,6 @@ deleteRequest(){
 	echo "You chose delete request"
 	echo "Enter endpoint for request: "
 	read endpoint
-	echo "Enter json data for request"
-	read jsonData
 	curl -X DELETE $endpoint -H "Content-Type: application/json"
 }
 
@@ -69,9 +67,11 @@ case $operation in
 	;;
 	3)
 	echo "You choose: $operation DELETE REQUEST"
+	deleteRequest
 	;;
 	4)
 	echo "You choose: $operation UPDATE REQUEST"
+	updateRequest
 	;;
 	5)
 	echo "exiting...."
