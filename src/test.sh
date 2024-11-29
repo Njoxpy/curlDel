@@ -1,7 +1,17 @@
-# gree user
-echo "hello welcome to curlDel"
-
 #!/bin/bash
+
+# Colors for output
+RESET="\033[0m"
+BOLD="\033[1m"
+RED="\033[31m"
+GREEN="\033[32m"
+YELLOW="\033[33m"
+BLUE="\033[34m"
+CYAN="\033[36m"
+
+# Welcome message
+echo -e "${CYAN}${BOLD}Hello, welcome to CurlDel!${RESET}"
+echo -e "${BLUE}============================================${RESET}"
 
 cat <<'EOF'
             +--------------------+
@@ -13,71 +23,75 @@ cat <<'EOF'
           |    CurlDel response     |
           +-------------------------+
 EOF
+echo -e "${BLUE}============================================${RESET}"
 
-
-# functions for get request
+# Functions for different requests
 getRequest(){
-	echo "You choose get request:"
-
-	echo "Enter endpoint for request: "
-	read endpoint
-	curl $endpoint
+    echo -e "${GREEN}You chose GET request.${RESET}"
+    echo -e "${YELLOW}Enter endpoint for request:${RESET} "
+    read endpoint
+    curl -s $endpoint
+    echo -e "\n${CYAN}Request complete.${RESET}"
 }
 
-# post request
 postRequest(){
-	echo "You chose post request"
-	echo "Enter endpoint for request: "
-	read endpoint
-	echo "Enter json data for request"
-	read jsonData
-	curl -X POST $endpoint -d "$jsonData" -H "Content-Type: application/json"
+    echo -e "${GREEN}You chose POST request.${RESET}"
+    echo -e "${YELLOW}Enter endpoint for request:${RESET} "
+    read endpoint
+    echo -e "${YELLOW}Enter JSON data for request:${RESET} "
+    read jsonData
+    curl -s -X POST $endpoint -d "$jsonData" -H "Content-Type: application/json"
+    echo -e "\n${CYAN}Request complete.${RESET}"
 }
 
 updateRequest(){
-	echo "You chose update request"
-	echo "Enter endpoint for request: "
-	read endpoint
-	echo "Enter json data for request"
-	read jsonData
-	curl -X PUT $endpoint -d $jsonData -H "Content-Type: application/json"
+    echo -e "${GREEN}You chose PUT request.${RESET}"
+    echo -e "${YELLOW}Enter endpoint for request:${RESET} "
+    read endpoint
+    echo -e "${YELLOW}Enter JSON data for request:${RESET} "
+    read jsonData
+    curl -s -X PUT $endpoint -d "$jsonData" -H "Content-Type: application/json"
+    echo -e "\n${CYAN}Request complete.${RESET}"
 }
 
 deleteRequest(){
-	echo "You chose delete request"
-	echo "Enter endpoint for request: "
-	read endpoint
-	curl -X DELETE $endpoint -H "Content-Type: application/json"
+    echo -e "${GREEN}You chose DELETE request.${RESET}"
+    echo -e "${YELLOW}Enter endpoint for request:${RESET} "
+    read endpoint
+    curl -s -X DELETE $endpoint -H "Content-Type: application/json"
+    echo -e "\n${CYAN}Request complete.${RESET}"
 }
 
+# Menu
+while true; do
+    echo -e "${CYAN}Choose an operation:${RESET}"
+    echo -e "${BLUE}1.${RESET} GET ${BLUE}2.${RESET} POST ${BLUE}3.${RESET} DELETE ${BLUE}4.${RESET} UPDATE (PUT) ${BLUE}5.${RESET} EXIT"
+    echo -e "${CYAN}Enter the operation number (1-5):${RESET}"
+    read operation
 
-# allow user to enter operation number
-echo "1.GET 2. POST 3. DELETE 4. UPDATE(PATCH) 5. EXIT"
-echo "choose operation number from 1-4: "
-read operation
-
-case $operation in 
-	1)
-	echo "You choose: $operation GET REQUEST"
-	getRequest
-	;;
-	2)
-	echo "You choose: $operation POST REQUEST"
-	postRequest
-	;;
-	3)
-	echo "You choose: $operation DELETE REQUEST"
-	deleteRequest
-	;;
-	4)
-	echo "You choose: $operation UPDATE REQUEST"
-	updateRequest
-	;;
-	5)
-	echo "exiting...."
-	exit
-	;;
-	*)
-	echo "Invalid option."
-	;;
-esac
+    case $operation in
+        1)
+            echo -e "${GREEN}You chose GET REQUEST.${RESET}"
+            getRequest
+            ;;
+        2)
+            echo -e "${GREEN}You chose POST REQUEST.${RESET}"
+            postRequest
+            ;;
+        3)
+            echo -e "${GREEN}You chose DELETE REQUEST.${RESET}"
+            deleteRequest
+            ;;
+        4)
+            echo -e "${GREEN}You chose UPDATE (PUT) REQUEST.${RESET}"
+            updateRequest
+            ;;
+        5)
+            echo -e "${RED}Exiting...${RESET}"
+            exit
+            ;;
+        *)
+            echo -e "${RED}Invalid option! Please choose a number between 1-5.${RESET}"
+            ;;
+    esac
+done
