@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CurlDel GUI - 90s Style</title>
+    <title>CurlDel GUI - Retro Terminal Style</title>
     <style>
       body {
         background-color: #1a1a1a; /* Dark grey background */
         color: #ffffff; /* White text */
-        font-family: "Comic Sans MS", cursive, sans-serif;
+        font-family: "Courier New", Courier, monospace;
         padding: 20px;
         text-align: center;
       }
       h1 {
-        color: #ff00ff; /* Neon pink */
+        color: #00ff00; /* Neon green */
         font-size: 3.5em;
         font-weight: bold;
         text-shadow: 3px 3px 10px #ffff00; /* Neon yellow glow */
@@ -28,6 +28,7 @@
         font-size: 1.2em;
         font-family: "Courier New", Courier, monospace;
         width: 60%;
+        transition: all 0.3s ease;
       }
       input:focus,
       button:focus {
@@ -42,10 +43,34 @@
         padding: 15px;
         margin-top: 20px;
         width: 80%;
-        word-wrap: break-word;
-        max-height: 300px;
+        height: 300px;
         overflow-y: scroll;
+        white-space: pre-wrap; /* Preserve whitespace formatting */
+        word-wrap: break-word;
+        animation: typing 3s steps(40) 1s 1 normal both,
+          blink-caret 0.75s step-end infinite;
       }
+
+      /* Animation for the terminal typing effect */
+      @keyframes typing {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+
+      /* Cursor blinking effect */
+      @keyframes blink-caret {
+        50% {
+          border-color: transparent;
+        }
+        100% {
+          border-color: #00ff00;
+        }
+      }
+
       .button-container {
         margin-top: 30px;
       }
@@ -56,35 +81,30 @@
         text-transform: uppercase;
         background-color: #ff00ff; /* Neon pink */
         border-color: #ff00ff; /* Neon pink */
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, transform 0.2s ease;
       }
       .button-container button:hover {
         background-color: #ffff00; /* Neon yellow on hover */
         border-color: #ffff00; /* Neon yellow on hover */
+        transform: scale(1.1); /* Zoom effect on hover */
       }
-      .marquee {
-        font-size: 1.5em;
-        color: #ffff00; /* Neon yellow */
-        background-color: #0000ff; /* Neon blue */
-        padding: 10px;
-        animation: marquee 10s linear infinite;
-        font-weight: bold;
+
+      .generate-pdf-button {
+        background-color: #ff00ff; /* Neon pink */
+        border: 2px solid #ff00ff; /* Neon pink */
+        font-size: 1.2em;
+        width: 60%;
+        transition: background-color 0.3s ease;
       }
-      @keyframes marquee {
-        0% {
-          left: 100%;
-        }
-        100% {
-          left: -100%;
-        }
+      .generate-pdf-button:hover {
+        background-color: #ffff00; /* Neon yellow on hover */
+        border-color: #ffff00;
       }
     </style>
   </head>
   <body>
-    <div class="marquee">
-      Welcome to CurlDel - 90s Style! Get ready to experience some retro vibes!
-    </div>
-    <h1>CurlDel GUI</h1>
+    <h1>CurlDel GUI - Terminal</h1>
+
     <label for="endpoint">Endpoint:</label><br />
     <input id="endpoint" type="text" placeholder="Enter endpoint" />
     <br /><br />
@@ -97,7 +117,13 @@
     <input id="token" type="text" placeholder="Enter Bearer Token" />
 
     <!-- Add a button for PDF generation -->
-    <button id="generate-pdf" onclick="generatePDF()">Generate PDF</button>
+    <button
+      id="generate-pdf"
+      class="generate-pdf-button"
+      onclick="generatePDF()"
+    >
+      Generate PDF
+    </button>
 
     <br /><br />
 
@@ -110,6 +136,28 @@
 
     <div id="response"></div>
 
-    <script src="renderer.js"></script>
+    <script>
+      // Simulate response for terminal-style effect
+      function updateResponse(message) {
+        const responseElement = document.getElementById("response");
+        responseElement.textContent += `\n> ${message}`;
+      }
+
+      // Example of sendRequest function to simulate sending GET, POST, PUT, DELETE requests
+      function sendRequest(method) {
+        updateResponse(`Sending ${method} request...`);
+        setTimeout(() => {
+          updateResponse(`${method} request completed.`);
+        }, 2000); // Simulate response delay
+      }
+
+      // PDF generation placeholder function
+      function generatePDF() {
+        updateResponse("Generating PDF...");
+        setTimeout(() => {
+          updateResponse("PDF generated successfully.");
+        }, 2000); // Simulate PDF generation delay
+      }
+    </script>
   </body>
 </html>
