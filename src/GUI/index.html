@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CurlDel GUI - 90s Style</title>
+    <style>
+      body {
+        background-color: #1a1a1a; /* Dark grey background */
+        color: #ffffff; /* White text */
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        color: #ff00ff; /* Neon pink */
+        font-size: 3.5em;
+        font-weight: bold;
+        text-shadow: 3px 3px 10px #ffff00; /* Neon yellow glow */
+      }
+      input,
+      button {
+        background-color: #00ff00; /* Neon green */
+        border: 2px solid #ff00ff; /* Neon pink */
+        padding: 12px;
+        margin: 10px;
+        color: white;
+        font-size: 1.2em;
+        font-family: "Courier New", Courier, monospace;
+        width: 60%;
+      }
+      input:focus,
+      button:focus {
+        outline: none;
+        border-color: #ffff00; /* Neon yellow focus effect */
+      }
+      #response {
+        font-family: "Courier New", Courier, monospace;
+        color: #00ff00; /* Neon green */
+        background-color: #000000; /* Black background */
+        border: 2px solid #00ff00; /* Neon green border */
+        padding: 15px;
+        margin-top: 20px;
+        width: 80%;
+        word-wrap: break-word;
+        max-height: 300px;
+        overflow-y: scroll;
+      }
+      .button-container {
+        margin-top: 30px;
+      }
+      .button-container button {
+        font-weight: bold;
+        width: 25%;
+        margin: 10px;
+        text-transform: uppercase;
+        background-color: #ff00ff; /* Neon pink */
+        border-color: #ff00ff; /* Neon pink */
+        transition: background-color 0.3s ease;
+      }
+      .button-container button:hover {
+        background-color: #ffff00; /* Neon yellow on hover */
+        border-color: #ffff00; /* Neon yellow on hover */
+      }
+      .marquee {
+        font-size: 1.5em;
+        color: #ffff00; /* Neon yellow */
+        background-color: #0000ff; /* Neon blue */
+        padding: 10px;
+        animation: marquee 10s linear infinite;
+        font-weight: bold;
+      }
+      @keyframes marquee {
+        0% {
+          left: 100%;
+        }
+        100% {
+          left: -100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="marquee">
+      Welcome to CurlDel - 90s Style! Get ready to experience some retro vibes!
+    </div>
+    <h1>CurlDel GUI</h1>
+    <label for="endpoint">Endpoint:</label><br />
+    <input id="endpoint" type="text" placeholder="Enter endpoint" />
+    <br /><br />
+
+    <label for="json">JSON Data (for POST/PUT):</label><br />
+    <input id="json" type="text" placeholder="Enter JSON data (for POST/PUT)" />
+    <br /><br />
+
+    <label for="token">Bearer Token:</label><br />
+    <input id="token" type="text" placeholder="Enter Bearer Token" />
+
+    <!-- Add a button for PDF generation -->
+    <button id="generate-pdf" onclick="generatePDF()">Generate PDF</button>
+
+    <br /><br />
+
+    <div class="button-container">
+      <button onclick="sendRequest('GET')">GET Request</button>
+      <button onclick="sendRequest('POST')">POST Request</button>
+      <button onclick="sendRequest('PUT')">PUT Request</button>
+      <button onclick="sendRequest('DELETE')">DELETE Request</button>
+    </div>
+
+    <div id="response"></div>
+
+    <script src="renderer.js"></script>
+  </body>
+</html>
