@@ -43,3 +43,6 @@ logs/
 
 # Electron settings
 .electron/
+
+
+src/GUI/out/
