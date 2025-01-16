@@ -68,30 +68,30 @@ while true; do
     echo -e "${BLUE}1.${RESET} GET ${BLUE}2.${RESET} POST ${BLUE}3.${RESET} DELETE ${BLUE}4.${RESET} UPDATE (PUT) ${BLUE}5.${RESET} EXIT"
     echo -e "${CYAN}Enter the operation number (1-5):${RESET}"
     read operation
-
+    
     case $operation in
         1)
             echo -e "${GREEN}You chose GET REQUEST.${RESET}"
             getRequest
-            ;;
+        ;;
         2)
             echo -e "${GREEN}You chose POST REQUEST.${RESET}"
             postRequest
-            ;;
+        ;;
         3)
             echo -e "${GREEN}You chose DELETE REQUEST.${RESET}"
             deleteRequest
-            ;;
+        ;;
         4)
             echo -e "${GREEN}You chose UPDATE (PUT) REQUEST.${RESET}"
             updateRequest
-            ;;
+        ;;
         5)
             echo -e "${RED}Exiting...${RESET}"
             exit
-            ;;
+        ;;
         *)
             echo -e "${RED}Invalid option! Please choose a number between 1-5.${RESET}"
-            ;;
+        ;;
     esac
 done
