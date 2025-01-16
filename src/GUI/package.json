@@ -4,15 +4,70 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "dev": "nodemon"
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "CurlDel",
+    "HTTP",
+    "GUI",
+    "Electron"
+  ],
+  "author": "NjoxPy",
   "license": "ISC",
-  "description": "",
+  "description": "CurlDel GUI - A simple tool for making HTTP requests with style.",
   "devDependencies": {
+    "@electron-forge/cli": "^7.6.0",
+    "@electron-forge/maker-deb": "^7.6.0",
+    "@electron-forge/maker-rpm": "^7.6.0",
+    "@electron-forge/maker-squirrel": "^7.6.0",
+    "@electron-forge/maker-zip": "^7.6.0",
+    "@electron-forge/plugin-auto-unpack-natives": "^7.6.0",
+    "@electron-forge/plugin-fuses": "^7.6.0",
+    "@electron/fuses": "^1.8.0",
     "electron": "^34.0.0",
     "nodemon": "^3.1.9"
   },
-  "dependencies": {}
+  "dependencies": {
+    "electron-squirrel-startup": "^1.0.1"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "path/to/icon",
+        "asar": true
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "CurlDel",
+            "authors": "NjoxPy",
+            "description": "CurlDel GUI - A simple tool for making HTTP requests with style."
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip"
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ],
+      "plugins": [
+        {
+          "name": "@electron-forge/plugin-auto-unpack-natives",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/plugin-fuses",
+          "config": {}
+        }
+      ]
+    }
+  }
 }
